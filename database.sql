@@ -5,17 +5,20 @@ CREATE TABLE "movies" (
   "description" TEXT NOT NULL
 );
 
--- movies can have multiple genres
 CREATE TABLE "genres" (
   "id" SERIAL PRIMARY KEY,
   "name" VARCHAR(80) NOT NULL
 );
 
+CREATE TABLE "movies_genres" (
+"id" SERIAL PRIMARY KEY,
+"movies_id" INT REFERENCES "movies",
+"genres_id" INT REFERENCES "genres"
+);
+
 
 -- CREATE JUNCTION TABLE
--- You will need to create the junction table that stores the relationships between "movies" and "genres"
 -- This table will need to be populated with some data as well (INSERTS)
--- Recall that this Junction Table will just be a table of ids!
 
 
 
