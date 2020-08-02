@@ -15,7 +15,7 @@ import axios from 'axios';
 // Create the rootSaga generator function
 function* rootSaga() {
   yield takeEvery('GET_MOVIES', getMoviesSaga);
-  yield takeEvery('POST_MOVIES', postMoviesSaga);
+  //   yield takeEvery('POST_MOVIES', postMoviesSaga);
 }
 
 function* getMoviesSaga(action) {
@@ -26,21 +26,21 @@ function* getMoviesSaga(action) {
       payload: response.data,
     });
   } catch (err) {
-    console.log('error');
+    console.log('error in getMoviesSaga');
   }
 }
 
-function* postMoviesSaga(action) {
-  try {
-    yield axios.post('/movies', action.payload);
-    // put = this.props.dispatch()
-    yield put({
-      type: 'GET_MOVIES', //CALLING THE GET_FRUIT SAGA TO RUN, POST --> GET
-    });
-  } catch (err) {
-    console.log('error');
-  }
-}
+// function* postMoviesSaga(action) {
+//   try {
+//     yield axios.post('/movies', action.payload);
+//     // put = this.props.dispatch()
+//     yield put({
+//       type: 'GET_MOVIES', //CALLING THE GET SAGA TO RUN, POST --> GET
+//     });
+//   } catch (err) {
+//     console.log('error in postMoviesSaga');
+//   }
+// }
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();

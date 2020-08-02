@@ -4,7 +4,7 @@ const pool = require('../modules/pool');
 
 // GET ALL MOVIES
 router.get('/', (req, res) => {
-  const queryString = `SELECT * FROM movies`;
+  const queryString = `SELECT * FROM "movies" ORDER BY "title" ASC;`;
 
   pool
     .query(queryString)
