@@ -53,6 +53,7 @@ class Edit extends Component {
     return (
       <div>
         <h2>Edit Movie Details</h2>
+        <h3>Current Title: {this.props.store.movieDetailsReducer.title}</h3>
         <div>
           <div>
             <input
@@ -69,6 +70,7 @@ class Edit extends Component {
             ></textarea>
           </div>
         </div>
+        <h3>Associated Genres:</h3>
         <ul>
           {this.props.store.movieGenresReducer.map((item, index) => (
             <li key={index}>{item.name}</li>

@@ -7,7 +7,6 @@ import Details from '../pages/Details';
 import Edit from '../pages/Edit';
 
 class App extends Component {
-  // Renders the entire app on the DOM
   render() {
     return (
       <div className="App">
