@@ -22,7 +22,7 @@ function* getMoviesSaga(action) {
   try {
     const response = yield axios.get('/movies');
     yield put({
-      type: 'GET_MOVIES',
+      type: 'POST_MOVIES',
       payload: response.data,
     });
   } catch (err) {
