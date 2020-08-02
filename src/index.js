@@ -18,8 +18,6 @@ function* rootSaga() {
   yield takeLatest('GET_MOVIE', getMovieSaga);
   yield takeLatest('PUT_MOVIE', putMovieDetailsSaga);
   yield takeLatest('GET_MOVIE_GENRES', getMovieGenresSaga);
-
-  //   yield takeEvery('POST_MOVIES', postMoviesSaga);
 }
 
 // SAGAS
@@ -38,44 +36,44 @@ function* getAllMoviesSaga(action) {
 function* getMovieSaga(action) {
   try {
     const movieId = action.payload;
-    const response = yield axios.get(`/movies/details/${movieId}`),
+    const response = yield axios.get(`/movies/details/${movieId}`);
     yield put({
       type: 'SET_DETAILS',
-      payload: response.data [0],
-    })
+      payload: response.data[0],
+    });
   } catch (err) {
     console.warn(err);
   }
 }
 
 function* putMovieDetailsSaga(action) {
-    try {
-        const movieId = action.payload.id;
-        yield axios.put(`/api/movies/edit/${movieId}`, action.payload);
-        yield put({
-            type: 'GET_MOVIE',
-            payload: movieId,
-        });
-        yield put({
-            type: 'GET_MOVIE_GENRES',
-            payload: movieId,
-        });
-    } catch(err) {
-        console.warn(err);
-    }
+  try {
+    const movieId = action.payload.id;
+    yield axios.put(`/api/movies/edit/${movieId}`, action.payload);
+    yield put({
+      type: 'GET_MOVIE',
+      payload: movieId,
+    });
+    yield put({
+      type: 'GET_MOVIE_GENRES',
+      payload: movieId,
+    });
+  } catch (err) {
+    console.warn(err);
+  }
 }
 
 function* getMovieGenresSaga(action) {
-    try {
-        const movieId = action.payload;
-        const response = yield axios.get(`/api/movies/genres/${movieId}`);
-        yield put({
-            type: 'SET_GENRES',
-            payload: response.data,
-        })
-    } catch(err) {
-        console.warn(err);
-    }
+  try {
+    const movieId = action.payload;
+    const response = yield axios.get(`/api/movies/genres/${movieId}`);
+    yield put({
+      type: 'SET_GENRES',
+      payload: response.data,
+    });
+  } catch (err) {
+    console.warn(err);
+  }
 }
 
 // Create sagaMiddleware
@@ -102,13 +100,13 @@ const movieDetailsReducer = (state = [], action) => {
 };
 
 const movieGenresReducer = (state = [], action) => {
-    switch (action.type) {
-      case 'SET_GENRES':
-        return action.payload;
-      default:
-        return state;
-    }
-  };
+  switch (action.type) {
+    case 'SET_GENRES':
+      return action.payload;
+    default:
+      return state;
+  }
+};
 
 // Create one store that all components can use
 const storeInstance = createStore(

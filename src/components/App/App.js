@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import './App.css';
-import Home from '../Home';
-import { HashRouter as Router, Route, Link } from 'react-router-dom';
+import Home from '../pages/Home';
+import { HashRouter as Router, Route } from 'react-router-dom';
 
 class App extends Component {
   // Renders the entire app on the DOM
   render() {
     return (
       <div className="App">
-        <Home />
-        <p>Empty Page</p>
+        <Router>
+          <Route exact path="/" component={Home} />
+        </Router>
       </div>
     );
   }
