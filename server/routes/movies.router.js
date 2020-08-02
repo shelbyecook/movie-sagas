@@ -51,4 +51,24 @@ router.put('/edit/:id', (req, res) => {
       res.sendStatus(500);
     });
 });
+
+// CREATE GET TO RETRIEVE GENRES FOR SINGLE MOVIE
+router.get('/genres/:id', (req, res) => {
+  const queryString = `SELECT "movies_genres".movies_id, "movies_genres".genres_id, "movies".title, "genres".name FROM "movies"
+    JOIN "movies_genres" ON "movies".id = "movies_genres".movies_id
+    JOIN "genres" ON "movies_genres".genres_id = "genres".id
+    WHERE "movies".id = $1;`;
+  const movieId = req.params.id;
+
+  pool
+    .query(queryString, [movieId])
+    .then((response) => {
+      res.send(response.rows);
+    })
+    .catch((err) => {
+      console.warn(err);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = router;
