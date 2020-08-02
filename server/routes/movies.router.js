@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool');
 
-// GET ALL MOVIES
+// GET ALL MOVIES (HOME/LIST PAGE)
 router.get('/', (req, res) => {
   const queryString = `SELECT * FROM "movies" ORDER BY "title" ASC;`;
 
@@ -12,12 +12,12 @@ router.get('/', (req, res) => {
       res.send(response.rows);
     })
     .catch((err) => {
-      console.log(err);
+      console.warn(err);
       res.sendStatus(500);
     });
 });
 
-// GET DETAILS FOR SINGLE MOVIE
+// GET DETAILS FOR SINGLE MOVIE (DETAILS PAGE)
 router.get('/details/:id', (req, res) => {
   const queryString = `SELECT * FROM "movies" WHERE "id" = $1;`;
   const movieId = req.params.id;
@@ -33,18 +33,18 @@ router.get('/details/:id', (req, res) => {
     });
 });
 
-// CREATE PUT FOR UPDATING A SINGLE MOVIE
+// CREATE PUT FOR UPDATING A SINGLE MOVIE (EDIT PAGE)
 router.put('/edit/:id', (req, res) => {
-  const queryText = `UPDATE "movies"
+  const queryString = `UPDATE "movies"
     SET "title" = $1, "description" = $2
     WHERE "id" = $3;`;
   const movieId = req.params.id;
   const newMovieData = req.body;
 
-  pool
-    .query(queryText, [newMovieData.title, newMovieData.description, movieId])
+  pool //How is data coming to server???
+    .query(queryString, [newMovieData.title, newMovieData.description, movieId])
     .then((response) => {
-      res.sendStatus(200);
+      res.sendStatus(200); //not response.rows
     })
     .catch((err) => {
       console.warn(err);
