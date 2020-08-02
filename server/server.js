@@ -6,7 +6,6 @@ const port = process.env.PORT || 5000;
 const moviesRouter = require('./routes/movies.router');
 
 /** ---------- MIDDLEWARE ---------- **/
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json()); // needed for angular requests
 app.use(express.static('build'));
 
