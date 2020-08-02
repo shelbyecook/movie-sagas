@@ -68,6 +68,10 @@ class Edit extends Component {
               placeholder="Edit Description"
               onChange={this.EditDetails('description')}
             ></textarea>
+            <div>
+              <button onClick={this.clickCancel}>Cancel</button>
+              <button onClick={this.clickSave}>Save</button>
+            </div>
           </div>
         </div>
         <h3>Associated Genres:</h3>
