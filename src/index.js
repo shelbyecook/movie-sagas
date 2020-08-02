@@ -49,7 +49,7 @@ function* getMovieSaga(action) {
 function* putMovieDetailsSaga(action) {
   try {
     const movieId = action.payload.id;
-    yield axios.put(`/api/movies/edit/${movieId}`, action.payload);
+    yield axios.put(`/movies/edit/${movieId}`, action.payload);
     yield put({
       type: 'GET_MOVIE',
       payload: movieId,
@@ -66,7 +66,7 @@ function* putMovieDetailsSaga(action) {
 function* getMovieGenresSaga(action) {
   try {
     const movieId = action.payload;
-    const response = yield axios.get(`/api/movies/genres/${movieId}`);
+    const response = yield axios.get(`/movies/genres/${movieId}`);
     yield put({
       type: 'SET_GENRES',
       payload: response.data,
