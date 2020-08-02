@@ -1,9 +1,26 @@
-# Project Name
-
-[Project Instructions](./INSTRUCTIONS.md), this line may be removed once you have updated the README.md
+# Project Name : Movie Sagas
 
 ## Description
 
-Your project description goes here. What problem did you solve? How did you solve it?
+The Movie Sagas application displays existing movies from an SQL database, and allows the option to selct a movie and edit the title and/or description. When the edits are submitted, the database is updated.
 
-Additional README details can be found [here](https://github.com/PrimeAcademy/readme-template/blob/master/README.md).
+## Dependencies and Tools Used
+
+- Node
+- Postgress
+- Postico
+- Express
+- Body-Parser
+- React
+- React-Redux
+- React-Router-Dom
+- Redux
+- Redux-Logger
+
+## Directions
+
+1.  On page load, all movies from the database are displayed on the Home page. Click any movie to get more details.
+
+2.  On the Details page, you can navigate back to Home or progress to the Edit page.
+
+3.  If you edit the movie details on the Edit Page, select save, and you'll return Home.
